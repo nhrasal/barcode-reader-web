@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>Barcode Scanner</title>
+    <style>
+    	#interactive.viewport {position: relative; width: 100%; height: auto; overflow: hidden; text-align: center;}
+    	#interactive.viewport > canvas, #interactive.viewport > video {max-width: 100%;width: 100%;}
+    	canvas.drawing, canvas.drawingBuffer {position: absolute; left: 0; top: 0;}
+    </style>
+  </head>
+  <body>
+  <div class="container">
+    <div class="row">
+    	<div class="col-lg-6">
+            <h3>Barcode Scanner using webcam</h3>
+            <form action="#" class="form mt-5">
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        <label for="scanner_input">Scann Data</label>
+                    </div>	
+                    <div class="col-sm-4">
+                        <input id="scanner_input" class="form-control" placeholder="Click the button to scan an EAN..." type="text" readonly/> 
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="#" id="scan" class="btn btn-sm btn-primary"data-toggle="modal" data-target="#livestream_scanner">
+                            Scan
+                        </a> 
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="#" id="write-btn" class="btn btn-sm btn-success">
+                            Write
+                        </a> 
+                    </div>
+                </div>
+            </form>
+    	</div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    <div class="modal" id="livestream_scanner">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-header">
+                    
+                    <h4 class="modal-title">Barcode Scanner</h4>
+                    
+    				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    					<span aria-hidden="true">&times;</span>
+    				</button>
+    			</div>
+    			<div class="modal-body" style="position: static">
+    				<div id="interactive" class="viewport"></div>
+    				<div class="error"></div>
+    			</div>
+    			<div class="modal-footer">
+    				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+    			</div>
+    		</div><!-- /.modal-content -->
+    	</div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <script type="text/javascript" src="barcode.js"></script>
+  <script>
+      $(document).ready(function(event){
+          $("#write-btn").click(function(e){
+              $("#scanner_input").removeAttr('readonly');
+          })
+          $("#scan").click(function(e){
+              $("#scanner_input").attr('readonly',true);
+          })
+      })
+  </script>
+</body>
+</html>
